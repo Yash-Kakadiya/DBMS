@@ -177,7 +177,7 @@ SELECT RTRIM(' hello world  ')
 
 -- 10.  Write a query to display first 4 & Last 5 characters of ‘SQL Server’. 
 
-SELECT SUBSTRING('SQL Server',1,4), SUBSTRING('SQL Server',LEN('SQL Server')-4,5)
+SELECT LEFT('SQL Server',4), RIGHT('SQL Server',5)
 
 -- 11.  Write a query to convert a string ‘1234.56’ to number (Use cast and convert function). 
 
