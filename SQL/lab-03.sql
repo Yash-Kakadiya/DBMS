@@ -127,7 +127,9 @@ WHERE AGE > 32
 
 --------------------------------------------------------------------------------------------
 
---Update Operation
+--Update Operation => if error occurs then execute below line once
+-- SET SQL_SAFE_UPDATES = 0; //may be shows error in MySQL
+
 --Part-A
 
 --01.Update deposit amount of all customers from 3000 to 5000. (Use Deposit Table) 
