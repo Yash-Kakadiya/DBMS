@@ -2,8 +2,10 @@
 
 --->Perform basic SQL commands like Create, Insert
 
-CREATE DATABASE CSE_3A_112
+CREATE DATABASE DBMS_1
 -- ignore the database name
+
+SELECT 2+2;
 
 CREATE TABLE DEPOSIT
 (
