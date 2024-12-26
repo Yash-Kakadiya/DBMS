@@ -1,0 +1,90 @@
+----------------------------------------- MongoDB-----------------------------------------
+--Lab-08-createcollection, dropcollection and insert method
+
+--Perform following queries using use, drop, createcollection, dropcollection, insertOne and insertMany
+method.
+
+--Part - A
+
+--01. Create a new database named “Darshan”.
+
+use Darshan
+
+--02. Create another new database named “DIET”.
+
+use DIET
+
+--03. List all databases.
+
+show databases
+
+--04. Check the current database.
+
+use DIET
+
+--05. Drop “DIET” database.
+
+db.dropDatabase()
+
+--06. Create a collection named “Student” in the “Darshan” database.
+
+db.createCollection('Student')
+
+--07. Create a collection named “Department” in the “Darshan” database.
+
+db.createCollection('Department')
+
+--08. List all collections in the “Darshan” database.
+
+show collections
+
+--09. Insert a single document using insertOne into “Department” collection. (Dname:’CE’, HOD:’Patel’)
+
+db.Department.insertOne({Dname:'CE', HOD:'Patel'})
+
+--10. Insert two document using insertMany into “Department” collection. (Dname:’IT’ and Dname:’ICT’)
+
+db.Department.insertMany([{Dname:'IT'},{Dname:'ICT'}])
+
+--11. Drop a collection named “Department” from the “Darshan” database.
+
+db.Department.drop()
+
+--12. Insert a single document using insertOne into “Student” collection.
+(Fields are Name, City, Branch, Semester, Age) Insert your own data.
+
+db.Student.insertOne({Name:"Yash",City:"Rajkot",Branch:"CSE",Semester:"4",Age:"20"})
+
+--13. Insert three documents using insertMany into “Student” collection.
+(Fields are Name, City, Branch, Semester, Age) Insert your three friend’s data.
+
+db.Student.insertMany([{Name:"Yash",City:"Rajkot",Branch:"CSE",Semester:"4",Age:"20"},{Name:"Mihir",City:"Rajkot",Branch:"CSE",Semester:"4",Age:"96"},{Name:"Ronit",City:"Tokyo",Branch:"CSE",Semester:"4",Age:"69"}])
+
+
+--14. Check whether “Student” collection exists or not.
+
+db.Student.exists()
+
+--15. Check the stats of “Student” collection.
+
+db.Student.stats
+
+--16. Drop the “Student” collection.
+
+db.Student.drop()
+
+--17. Create a collection named “Deposit”.
+
+db.createCollection('Deposit')
+
+--18. Insert following data in to “Deposit” collection.
+
+db.Deposit.insertMany([{ACTNO:"101",CNAME:"ANIL",BNAME:"VRCE",AMOUNT:"1000.00",CITY:"Rajkot"},{ACTNO:"102",CNAME:"SUNIL",BNAME:"AJNI",AMOUNT:"5000.00",CITY:"SURAT"},{ACTNO:"103",CNAME:"MEHUL",BNAME:"KAROLBAGH",AMOUNT:"3500.00",CITY:"BARODA"},{ACTNO:"104",CNAME:"MADHURI",BNAME:"CHANDI",AMOUNT:"1200.00",CITY:"AHMEDABAD"},{ACTNO:"105",CNAME:"PRMOD",BNAME:"M.G. ROAD",AMOUNT:"3000.00",CITY:"SURAT"},{ACTNO:"106",CNAME:"SANDIP",BNAME:"ANDHERI",AMOUNT:"2000.00",CITY:"RAJKOT"},{ACTNO:"107",CNAME:"SHIVANI",BNAME:"VIRAR",AMOUNT:"1000.00",CITY:"SURAT"},{ACTNO:"108",CNAME:"KRANTI",BNAME:"NEHRU PLACE",AMOUNT:"5000.00",CITY:"RAJKOT"}])
+
+--19. Display all the documents of “Deposit” collection.
+
+db.Deposit.find().forEach(printjson)
+
+--20. Drop the “Deposit” collection.
+
+db.Deposit.drop()
