@@ -27,7 +27,7 @@ CREATE TABLE Person
 );
 
 --From the above given tables create Stored Procedures:
---Part � A
+--Part - A
 --01. Department, Designation & Person Table�s INSERT, UPDATE & DELETE Procedures.
 
 CREATE OR ALTER PROC PR_PERSON_INSERT

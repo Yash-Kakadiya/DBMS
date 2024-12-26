@@ -200,7 +200,7 @@ SELECT *
 FROM Songs
 WHERE Artist_id=(
                 SELECT Artist_id
-                FROM Artists
+FROM Artists
 WHERE Artist_name='Shreya Ghoshal'
                 )
 ORDER BY Duration;
@@ -211,9 +211,9 @@ ORDER BY Duration;
 SELECT Song_title
 FROM SONGS
 WHERE Album_id  IN (SELECT Album_id
-                    FROM Albums
-                    GROUP BY Artist_ID
-                    HAVING COUNT(Artist_id) > 1)
+FROM Albums
+GROUP BY Artist_ID
+HAVING COUNT(Artist_id) > 1)
 
 -- 23.  Retrieve all albums along with the total number of songs.  
 
