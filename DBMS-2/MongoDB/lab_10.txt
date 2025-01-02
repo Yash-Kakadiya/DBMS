@@ -1,0 +1,87 @@
+1. db.Student.updateMany({name: "John"},{$set: {age:31}})
+
+2. db.Student.updateMany({city: 'New York'},{$set: {city:'New Jersy'}})
+
+3. db.Student.updateMany({age: {$gt: 35}},{$set: {isActive:false}})
+
+
+4. db.Student.updateMany({},{$inc: {age:1}})
+
+
+5. db.Student.updateMany({name: "Eva"},{$set: {city:'Cambridge'}})
+
+
+6. db.Student.updateMany({name: 'Sophia'},{$set: {isActive:false}})
+
+7. db.Student.updateMany({age: {$lt: 30}},{$set: {city:'San Diego'}})
+
+8. db.Student.updateMany({},{$rename: {age:'year'}})
+
+9. db.Student.updateMany({name: 'Nick'},{$set: {isActive:true}})
+
+10. db.Student.updateMany({},{$set: {country: "USA"}})
+
+11. db.Student.updateMany({name: "David"},{$set: {city:'Orlando'}})
+
+12. db.Student.updateMany({},{$mul: {age: 2}})
+
+13. db.Student.updateMany({name: 'Tom'},{$unset: {city: ""}})
+
+14. db.Student.updateMany({year: {$gt: 30}},{$set: {premiumUser: true}})
+
+15. db.Student.updateMany({name: 'Jane'},{$set: {isActive:true}})
+
+16. db.Student.updateMany({name: 'Lucy'},{$set: {isActive:false}})
+
+17. db.Student.deleteOne({name: 'Nick'})
+
+18. db.Student.deleteMany({isActive: false})
+
+19. db.Student.deleteMany({city: 'New York'})
+
+20. db.Student.deleteMany({year: {$gt: 35}})
+
+21. db.Student.deleteMany({name: 'Olivia'})
+
+22. db.Student.deleteMany({year: {$lt: 25}})
+
+23. db.Student.deleteOne({isActive: true})
+
+24. db.Student.deleteMany({city: 'Los Angeles'})
+
+25. db.Student.deleteMany({city: {$exists : false}})
+
+26. db.Student.updateMany({},{$rename: {city: 'location'}})
+
+27. db.Student.updateMany({name: 'John'},{$rename: {name: 'FullName'}})
+
+28. db.Student.updateMany({},{$rename: {isActive: 'status'}})
+
+29. db.Student.updateMany({location: 'San Francisco'},{$rename: {year: 'yearsOld'}})
+
+30. db.createCollection("Employee", {capped: true, size: 10485760,
+  validator: {                         
+    $jsonSchema: {
+      bsonType: "object",
+      required: ["Ecode", "Ename"],  
+      properties: {
+        Ecode: {
+          bsonType: "int",            
+          description: "Ecode must be an integer and is required"
+        },
+        Ename: {
+          bsonType: "string",         
+          description: "Ename must be a string and is required"
+        },
+        Age: {
+          bsonType: "int",             
+          description: "Age must be an integer"
+        },
+        City: {
+          bsonType: "string",         
+          description: "City must be a string"
+        }
+      }
+    }
+  }
+});
