@@ -1,0 +1,76 @@
+1. db.employee.find({ename: {$regex: /^E/}})
+
+2. db.employee.find({ename: {$regex: /^E/}})
+
+3. db.employee.find({ename: {$regex: /^[S,M]/}})
+
+4. db.employee.find({city: {$regex: /^[A-M]/}})
+
+5. db.employee.find({city: {$regex: /ney$/}})
+
+6. db.employee.find({ename: {$regex: /^E/, $options: 'i'}})
+
+7. db.employee.find({ename: {$regex: /^E.{4}/}})
+
+8. db.employee.find({ename: {$regex: /^S.*a$/}})
+
+9. db.employee.find({ename: {$regex: /^Phi/}},{eid:1, ename:1, city: 1, salary: 1})
+
+10. db.employee.find({city: {$regex: /.dne./}},{eid:1, joiningdate:1, city: 1})
+
+11. db.employee.find({city: {$nin: ['London', 'Sydney']}},{eid:1, joiningdate:1, city: 1})
+
+12. db.employee.find({ename: /J/})
+
+13. db.employee.find({ename: /y$/})
+
+14. db.employee.find({ename: /.a./i})
+
+15. db.employee.find({ename: /.[a,e]./i})
+
+16. db.employee.find({ename: /^J.*n/i})
+
+17. db.employee.find({city: /^New/})
+
+18. db.employee.find({city: {$not:/^L/}})
+
+19. db.employee.find({city: /.*york.*/i})
+
+20. db.employee.find({ename: {$regex: /.*[aeiou]{2}.*/}});
+
+21. db.employee.find({ename:/.../i})
+
+22. db.employee.find({ename:/^....$/i})
+
+23. db.employee.find({ename:/^[S,M]/})
+
+24. db.employee.find({ename:/.il./})
+
+25. db.employee.find({ename: {$not:/.a./}})
+
+26. db.employee.find({ename:/\d/})
+
+27. db.employee.find({ename: {$regex: /^[^aeiou]*[aeiou][^aeiou]*$/i}})
+
+28. db.employee.find({ename: {$regex: /^[A-Z][a-z]/}})
+
+B.
+1. db.student.find({sname: /^K/})
+
+2. db.student.find({sname: /^[Z,D]/})
+
+3. db.student.find({city: /^[A,R]/})
+
+4. db.student.find({sname: /^P.*i$/})
+
+5. db.student.find({department: /^C/})
+
+6. db.student.find({city: /.*med.*/},{sname:1, sem:1, fees:1, department:1})
+
+7. db.student.find({city: {$not: /.[rajkot,baroda]./}},{sname:1, sem:1, fees:1, department:1})
+
+8. db.student.find({sname: /^K.*/})
+
+9. db.student.find({sname: /a$/})
+
+10. db.student.find({sname: /.*ri.*/})

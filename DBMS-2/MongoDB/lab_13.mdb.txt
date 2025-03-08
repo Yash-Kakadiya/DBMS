@@ -1,0 +1,90 @@
+1. Create an index on the company field in the stocks collection.
+db.Stock.createIndex({company:1})
+
+2. Create a compound index on the sector and sales fields in the stocks collection.
+db.Stock.createIndex({sector:1,sales:1})
+
+3. List all the indexes created on the stocks collection.
+db.Stock.getIndexes()
+
+4. Drop an existing index on the company field from the stocks collection.
+db.Stock.dropIndex("company_1")
+
+5. Use a cursor to retrieve and iterate over documents in the stocks collection, displaying each document.
+var cursor=db.Stock.find();while(cursor.hasNext()){printjson(cursor.next())}
+
+6. Limit the number of documents returned by a cursor to the first 3 documents in the stocks collection.
+var cursor=db.Stock.find().limit(3);while(cursor.hasNext()){printjson(cursor.next())}
+
+7. Sort the documents returned by a cursor in descending order based on the sales field.
+var cursor=db.Stock.find().sort({sales:-1});while(cursor.hasNext()){printjson(cursor.next())}
+
+8. Skip the first 2 documents in the result set and return the next documents using the cursor.
+var cursor=db.Stock.find().skip(2);while(cursor.hasNext()){printjson(cursor.next())}
+
+9. Convert the cursor to an array and return all documents from the stocks collection.
+var cursorArray=db.Stock.find().toArray();printjson(cursorArray)
+
+10. Create a collection named "Companies" with schema validation to ensure that each document must
+contains a company field (string) and a sector field (string).
+db.createCollection("Companies", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["company", "sector"],
+            properties: {
+                company: {bsonType: "string"},
+                sector: {bsonType: "string",}
+            }
+        }
+    }
+})
+------------------------------------PART-B--------------
+1. Create a collection named "Scripts" with validation for fields like eps, pe, and roe to ensure that they
+are numbers and required/compulsory fields.
+db.createCollection("Scripts", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["eps", "pe", "roe"],
+            properties: {
+                eps: {bsonType: "double"},
+                pe: {bsonType: "double"},
+                roe: {bsonType: "double"}
+            }
+        }
+    }
+})
+
+2. Create a collection named "Products" where each product has an embedded document for
+manufacturer details and a multivalued field for categories that stores an array of category names the
+product belongs to.
+	1. manufacturer details: The manufacturer will be an embedded document with fields like name, country, and establishedYear.
+	2. categories: The categories will be an array field that holds multiple values. (i.e. Electronics, Mobile, Smart Devices).
+db.createCollection("Products", {
+    validator: {
+        $jsonSchema: {
+            bsonType: "object",
+            required: ["manufacturer", "categories"],
+            properties: {
+                manufacturer: {
+                    bsonType: "object",
+                    required: ["name", "country", "establishedYear"],
+                    properties: {
+                        name: {bsonType: "string"},
+                        country: {bsonType: "string"},
+                        establishedYear: {bsonType: "int"}
+                    }
+                },
+                categories: {
+                    bsonType: "array",
+                    items: {
+                        bsonType: "string"
+                    },
+                    description: "must be an array of strings"
+                }
+            }
+        }
+    }
+})
+

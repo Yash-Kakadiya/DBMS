@@ -1,0 +1,169 @@
+// 1. Display distinct cities
+db.Student.distinct("CITY");
+
+// 2. Display city-wise count of students
+db.Student.aggregate([
+  { $group: { _id: "$CITY", count: { $sum: 1 } } }
+]);
+
+// 3. Display sum of fees
+db.Student.aggregate([
+  { $group: { _id: null, totalFees: { $sum: "$FEES" } } }
+]);
+
+// 4. Display average of fees
+db.Student.aggregate([
+  { $group: { _id: null, avgFees: { $avg: "$FEES" } } }
+]);
+
+// 5. Display maximum and minimum fees
+db.Student.aggregate([
+  {
+    $group: {
+      _id: null,
+      maxFees: { $max: "$FEES" },
+      minFees: { $min: "$FEES" }
+    }
+  }
+]);
+
+// 6. Display city-wise total fees
+db.Student.aggregate([
+  { $group: { _id: "$CITY", totalFees: { $sum: "$FEES" } } }
+]);
+
+// 7. Display gender-wise maximum fees
+db.Student.aggregate([
+  { $group: { _id: "$GENDER", maxFees: { $max: "$FEES" } } }
+]);
+
+// 8. Display city-wise maximum and minimum fees
+db.Student.aggregate([
+  {
+    $group: {
+      _id: "$CITY",
+      maxFees: { $max: "$FEES" },
+      minFees: { $min: "$FEES" }
+    }
+  }
+]);
+
+// 9. Display count of students living in Baroda
+db.Student.countDocuments({ CITY: "Baroda" });
+
+// 10. Display average fees of students in Rajkot
+db.Student.aggregate([
+  { $match: { CITY: "Rajkot" } },
+  { $group: { _id: null, avgFees: { $avg: "$FEES" } } }
+]);
+
+// 11. Count the number of male and female students in each department
+db.Student.aggregate([
+  {
+    $group: {
+      _id: { DEPARTMENT: "$DEPARTMENT", GENDER: "$GENDER" },
+      count: { $sum: 1 }
+    }
+  }
+]);
+
+// 12. Find the total fees collected from each department
+db.Student.aggregate([
+  { $group: { _id: "$DEPARTMENT", totalFees: { $sum: "$FEES" } } }
+]);
+
+
+// 13. Find the minimum Fees paid by male and female students in each City.
+db.Student.aggregate([
+  {
+    $group: {
+      _id: { City: "$CITY", Gender: "$GENDER" },
+      MinFees: { $min: "$FEES" }
+    }
+  }
+]);
+
+// 14. Sort students by Fees in descending order and return the top 5.
+db.Student.find().sort({ FEES: -1 }).limit(5);
+
+// 15. Group students by City and calculate the average Fees for each City (only if more than 1 student).
+db.Student.aggregate([
+  {
+    $group: {
+      _id: "$CITY",
+      AvgFees: { $avg: "$FEES" },
+      StudentCount: { $sum: 1 }
+    }
+  },
+  {
+    $match: { StudentCount: { $gt: 1 } }
+  }
+]);
+
+// 16. Filter students from CE or Mechanical department, then calculate the total Fees.
+db.Student.aggregate([
+  {
+    $match: {
+      DEPARTMENT: { $in: ["CE", "Mechanical"] }
+    }
+  },
+  {
+    $group: {
+      _id: null,
+      TotalFees: { $sum: "$FEES" }
+    }
+  }
+]);
+
+// 17. Count the number of male and female students in each Department.
+db.Student.aggregate([
+  {
+    $group: {
+      _id: { Department: "$DEPARTMENT", Gender: "$GENDER" },
+      Count: { $sum: 1 }
+    }
+  }
+]);
+
+// 18. Filter students from Rajkot, then group by Department and find the average Fees for each department.
+db.Student.aggregate([
+  {
+    $match: { CITY: "Rajkot" }
+  },
+  {
+    $group: {
+      _id: "$DEPARTMENT",
+      AvgFees: { $avg: "$FEES" }
+    }
+  }
+]);
+
+// 19. Group by Sem and calculate both the total and average Fees, then sort by total Fees in descending order.
+db.Student.aggregate([
+  {
+    $group: {
+      _id: "$SEM",
+      TotalFees: { $sum: "$FEES" },
+      AvgFees: { $avg: "$FEES" }
+    }
+  },
+  {
+    $sort: { TotalFees: -1 }
+  }
+]);
+
+// 20. Find the top 3 cities with the highest total Fees collected.
+db.Student.aggregate([
+  {
+    $group: {
+      _id: "$CITY",
+      TotalFees: { $sum: "$FEES" }
+    }
+  },
+  {
+    $sort: { TotalFees: -1 }
+  },
+  {
+    $limit: 3
+  }
+]);
